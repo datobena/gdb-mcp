@@ -68,3 +68,11 @@ Each tool returns simple JSON so it is easy to route back into your LLM prompt.
 - Output is captured from gdb stdout/stderr until the next `(gdb)` prompt. If
   you spawn a program that never returns to the prompt (e.g., it blocks on
   input), the call will time out.
+
+## Credits
+
+- This project was built for my CSE 598 class, which emphasized using AI/LLMs in
+  our workflow. I leaned on AI to write the entire project—including this
+  README.
+- Inspired by https://github.com/mrexodia/ida-pro-mcp, and their server logic
+  was used as a starting point.

@@ -53,9 +53,12 @@ need to override what gets written.
 
 ## Exposed tools
 
-- `start_binary(binary_path, args=None, cwd=None)` – launch gdb against a target
-  binary (with optional args) and return a session id and the initial banner.
-- `attach_to_pid(pid, cwd=None)` – start gdb and attach to a running process.
+- `start_binary(binary_path, args=None, cwd=None, load_init=True)` – launch gdb
+  against a target binary (with optional args) and return a session id and the
+  initial banner. Set `load_init=False` to skip user gdbinit (default is to load
+  it so helpers like GEF/pwndbg remain enabled).
+- `attach_to_pid(pid, cwd=None, load_init=True)` – start gdb and attach to a
+  running process (same `load_init` behavior as above).
 - `gdb_command(session_id, command, timeout_seconds=15.0)` – execute a single
   gdb command in the given session and return the output.
 - `batch_commands(session_id, commands, timeout_seconds=15.0)` – run a list of
