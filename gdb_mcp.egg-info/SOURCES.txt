@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+gdb_mcp/__init__.py
+gdb_mcp/gdb_session.py
+gdb_mcp/installer.py
+gdb_mcp/server.py
+gdb_mcp.egg-info/PKG-INFO
+gdb_mcp.egg-info/SOURCES.txt
+gdb_mcp.egg-info/dependency_links.txt
+gdb_mcp.egg-info/entry_points.txt
+gdb_mcp.egg-info/requires.txt
+gdb_mcp.egg-info/top_level.txt
