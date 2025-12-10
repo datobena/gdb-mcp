@@ -9,10 +9,15 @@ and shutting sessions down.
 
 ## Setup
 
+You can install either inside a virtualenv (recommended) or directly:
+
 ```bash
+# optional but recommended
 python -m venv .venv
 . .venv/bin/activate
+
 pip install -e .
+# or: pip install .
 ```
 
 ## Running the MCP server
