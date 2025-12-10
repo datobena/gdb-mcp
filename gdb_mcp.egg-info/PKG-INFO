@@ -1,8 +1,17 @@
 Metadata-Version: 2.4
 Name: gdb-mcp
-Version: 0.1.1
+Version: 1.0.1
 Summary: Model Context Protocol server for driving GDB from an LLM.
-Author: gdb-mcp
+Author: gpt-5.1-codex-max
+License: MIT
+Project-URL: Source, https://github.com/datobena/gdb-mcp
+Keywords: gdb,debugger,mcp,model-context-protocol,llm,agent,reverse-engineering,binary-analysis,pwndbg,gef,stdio,attach,breakpoint,linux-debugging
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Software Development :: Debuggers
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 Requires-Dist: mcp>=1.0.0
