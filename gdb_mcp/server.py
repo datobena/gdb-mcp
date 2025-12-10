@@ -2,7 +2,7 @@ import argparse
 import logging
 from typing import Dict, List, Optional
 
-from .gdb_session import GdbNotStarted, GdbSession
+from .gdb_session import DEFAULT_PROMPTS, GdbNotStarted, GdbSession
 from .installer import install as run_install
 
 try:
@@ -34,6 +34,9 @@ async def start_binary(
     args: Optional[List[str]] = None,
     cwd: Optional[str] = None,
     load_init: bool = True,
+    start_timeout: float = 30.0,
+    prompt: Optional[str] = None,
+    force_prompt: bool = True,
 ) -> dict:
     """
     Launch gdb against the provided binary.
@@ -43,7 +46,20 @@ async def start_binary(
     :param cwd: Optional working directory for the debuggee.
     :returns: Session metadata including the initial gdb banner.
     """
-    session = GdbSession(binary_path, args or [], cwd=cwd, load_init=load_init)
+    prompt_list = [prompt] if prompt else DEFAULT_PROMPTS.copy()
+    # Deduplicate while preserving order
+    seen = set()
+    prompt_list = [p for p in prompt_list if not (p in seen or seen.add(p))]
+    session = GdbSession(
+        binary_path,
+        args or [],
+        cwd=cwd,
+        load_init=load_init,
+        start_timeout=start_timeout,
+        prompts=prompt_list,
+        force_prompt=force_prompt,
+        prompt_string=prompt if prompt else None,
+    )
     banner = await session.start()
     _sessions[session.session_id] = session
     return {
@@ -60,6 +76,9 @@ async def attach_to_pid(
     pid: int,
     cwd: Optional[str] = None,
     load_init: bool = True,
+    start_timeout: float = 30.0,
+    prompt: Optional[str] = None,
+    force_prompt: bool = True,
 ) -> dict:
     """
     Start gdb without a target binary and attach to a running PID.
@@ -68,7 +87,18 @@ async def attach_to_pid(
     :param cwd: Optional working directory used by gdb.
     :returns: Session metadata including output from gdb when attaching.
     """
-    session = GdbSession(target=None, cwd=cwd, load_init=load_init)
+    prompt_list = [prompt] if prompt else DEFAULT_PROMPTS.copy()
+    seen = set()
+    prompt_list = [p for p in prompt_list if not (p in seen or seen.add(p))]
+    session = GdbSession(
+        target=None,
+        cwd=cwd,
+        load_init=load_init,
+        start_timeout=start_timeout,
+        prompts=prompt_list,
+        force_prompt=force_prompt,
+        prompt_string=prompt if prompt else None,
+    )
     banner = await session.start()
     attach_output = await session.attach(pid)
     _sessions[session.session_id] = session
