@@ -84,6 +84,14 @@ Each tool returns simple JSON so it is easy to route back into your LLM prompt.
   value (`force_prompt=True`) so gdbinit customizations (like pwndbg) don’t
   prevent the initial prompt from being detected.
 
+## Demo
+
+Auto-playing preview:
+
+![Demo](docs/media/demo.gif)
+
+Source video: `docs/media/demo.mp4`
+
 ## Credits
 
 - This project was built for my CSE 598 class, which emphasized using AI/LLMs in
