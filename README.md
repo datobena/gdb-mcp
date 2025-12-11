@@ -9,7 +9,13 @@ and shutting sessions down.
 
 ## Setup
 
-You can install either inside a virtualenv (recommended) or directly:
+Install from PyPI (preferred):
+
+```bash
+pip install gdb-mcp
+```
+
+You can also install from source, inside a virtualenv (recommended) or directly:
 
 ```bash
 # optional but recommended
